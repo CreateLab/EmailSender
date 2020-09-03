@@ -31,7 +31,7 @@ namespace ConsoleApp2
         public static MimeMessage CreateMessage(string login, string password, string name)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("ITMO", "main.simpleq@gmail.com"));
+            message.From.Add(new MailboxAddress("ITMO", "*****"));
             message.To.Add(new MailboxAddress(name, $"{login}@niuitmo.ru"));
             message.Subject = "Тема: Доступ на Helios";
 
