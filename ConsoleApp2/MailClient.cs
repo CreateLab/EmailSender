@@ -12,47 +12,46 @@ namespace ConsoleApp2
     {
         public async Task SendMessage(IEnumerable<MimeMessage> messages)
         {
-           
             using var client = new SmtpClient();
-            client.Connect("***", 587, SecureSocketOptions.StartTls);
+            // allow less secure app google
+            client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
 
             // Note: only needed if the SMTP server requires authentication
-            
-            client.Authenticate("****", "****");
+            //TODO: setup ur creditance
+            client.Authenticate("***", "***");
             foreach (var message in messages)
             {
                 await Task.Delay(1000);
                 await client.SendAsync(message);
             }
-          
+
             await client.DisconnectAsync(true);
         }
 
         public static MimeMessage CreateMessage(string login, string password, string name)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("ITMO", "*****"));
+            message.From.Add(new MailboxAddress("ITMO", "main.simpleq@gmail.com"));
             message.To.Add(new MailboxAddress(name, $"{login}@niuitmo.ru"));
             message.Subject = "Тема: Доступ на Helios";
 
             message.Body = new TextPart("plain")
             {
                 Text = @$"
-                login: {"s"+login}
+                login: {"s" + login}
                 password: {password}
 
                 Helios URL: helios.se.ifmo.ru
                 Helios SSH port: 2222
 
                 Пример подключения через утилиту ssh в терминале  Unix–подобной ОС:
-                $ ssh {"s"+login}@helios.se.ifmo.ru -p 2222
+                $ ssh {"s" + login}@helios.se.ifmo.ru -p 2222
                 `$ Password: {password}`
                 
                 
                 "
             };
             return message;
-
         }
     }
 }

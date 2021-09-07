@@ -1,0 +1,2 @@
+s{login}:{password}:{fio}:{birthdate}
+

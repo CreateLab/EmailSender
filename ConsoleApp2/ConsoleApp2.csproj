@@ -8,21 +8,12 @@
     <ItemGroup>
       <PackageReference Include="MailKit" Version="2.8.0" />
     </ItemGroup>
+    
 
     <ItemGroup>
-      <Compile Remove="txt\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="txt\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="txt\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="data" />
+      <None Update="data\**\*.*">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
