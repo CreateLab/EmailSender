@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MailKit.Net.Smtp;
@@ -14,11 +12,11 @@ namespace ConsoleApp2
         {
             using var client = new SmtpClient();
             // allow less secure app google
-            client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            await client.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
 
             // Note: only needed if the SMTP server requires authentication
             //TODO: setup ur creditance
-            client.Authenticate("***", "***");
+            await client.AuthenticateAsync("***", "***");
             foreach (var message in messages)
             {
                 await Task.Delay(1000);
